@@ -1,3 +1,3 @@
 // Dexon settings.
-// To turn on the Meta Pixel, paste your Pixel ID between the quotes, e.g. pixelId: "123456789012345"
-window.DEXON_CONFIG = { pixelId: "" };
+// Meta Pixel ID is set below. To turn the Pixel off, make it empty: pixelId: ""
+window.DEXON_CONFIG = { pixelId: "1114496874677891" };
