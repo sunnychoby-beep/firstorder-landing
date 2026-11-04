@@ -93,6 +93,7 @@ Error generating stack: `+o.message+`
 </script>
   <script>(function(){function m(a){var h=a.getAttribute("href");if(!h)return;try{var u=new URL(h,document.baseURI);if(((u.protocol==="http:"||u.protocol==="https:")&&u.host!==location.host)||u.protocol==="mailto:"||u.protocol==="tel:"||u.protocol==="sms:"){a.target="_blank";a.rel="noopener noreferrer";}}catch(e){}}function s(){document.querySelectorAll("a[href]").forEach(m);}if(document.readyState!=="loading"){s();}else{document.addEventListener("DOMContentLoaded",s);}document.addEventListener("click",function(e){var a=e.target&&e.target.closest&&e.target.closest("a[href]");if(a){m(a);}},true);})();</script>
   <script type="application/json" data-clippy-inline-media-manifest="1">{"version":1,"slots":[]}</script>
+<script src="config.js"></script>
 <!-- DEXON CRM: lead capture + tracking (secure, via Supabase functions) -->
 <script src="https://player.vimeo.com/api/player.js"></script>
 <script>
@@ -101,6 +102,31 @@ Error generating stack: `+o.message+`
   var KEY="sb_publishable_zOeCB7gvONrSXD4InUzSZA_-VVWoszC";
   var origSet=Storage.prototype.setItem;
   var busy=false;
+
+  var CFG=window.DEXON_CONFIG||{};
+  function ck(n){var m=document.cookie.match(new RegExp("(?:^|; )"+n+"=([^;]*)"));return m?decodeURIComponent(m[1]):"";}
+  /* ad attribution: remember the FIRST ad the visitor came from */
+  try{
+    var qs=new URLSearchParams(location.search),a0={},has=false;
+    ["utm_source","utm_medium","utm_campaign","utm_term","utm_content","fbclid"].forEach(function(k){var v=qs.get(k);if(v){a0[k]=v.slice(0,200);has=true;}});
+    if(has&&!localStorage.getItem("dexon_attr")){
+      a0.landing_url=(location.origin+location.pathname).slice(0,300);a0.referrer=(document.referrer||"").slice(0,300);
+      origSet.call(localStorage,"dexon_attr",JSON.stringify(a0));
+    }
+  }catch(e){}
+  function attr(){
+    var a={};try{a=JSON.parse(localStorage.getItem("dexon_attr")||"{}");}catch(e){}
+    if(!a.landing_url){a.landing_url=(location.origin+location.pathname).slice(0,300);a.referrer=(document.referrer||"").slice(0,300);}
+    a.fbp=ck("_fbp");a.fbc=ck("_fbc");
+    if(!a.fbc&&a.fbclid)a.fbc="fb.1."+Date.now()+"."+a.fbclid;
+    return a;
+  }
+  /* Meta Pixel: loads only when a Pixel ID is set in config.js */
+  function px(ev,custom){try{if(window.fbq){custom?fbq("trackCustom",ev):fbq("track",ev);}}catch(e){}}
+  if(CFG.pixelId){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
+    fbq("init",CFG.pixelId);fbq("track","PageView");
+  }
 
   function rpc(fn,body){
     return fetch(API+fn,{method:"POST",keepalive:true,
@@ -120,10 +146,10 @@ Error generating stack: `+o.message+`
       var d=JSON.parse(raw);
       if(!(d&&d.name&&d.email)) return;
       busy=true;
-      rpc("capture_lead",{p_name:d.name,p_phone:d.whatsapp||"",p_email:d.email,p_source:location.hostname})
+      rpc("capture_lead",{p_name:d.name,p_phone:d.whatsapp||"",p_email:d.email,p_source:location.hostname,p_attr:attr()})
         .then(function(id){
           busy=false;
-          if(id){origSet.call(localStorage,"dexon_lead_id",id);sessionStorage.setItem("dexon_v","1");}
+          if(id){origSet.call(localStorage,"dexon_lead_id",id);sessionStorage.setItem("dexon_v","1");px("Lead");}
         });
     }catch(e){busy=false;}
   }
@@ -148,18 +174,20 @@ Error generating stack: `+o.message+`
   });
 
   /* 3) Vimeo watch tracking */
-  var maxW=parseInt(localStorage.getItem("dexon_watch")||"0",10),sent=0,started=false;
+  var maxW=parseInt(localStorage.getItem("dexon_watch")||"0",10),sent=0,started=false,m25=0,m75=0;
   function attach(){
     var n=0,t=setInterval(function(){
       var f=document.querySelector('iframe[src*="vimeo.com"]');
       if(f&&window.Vimeo){
         clearInterval(t);
         var p=new Vimeo.Player(f);
-        p.on("play",function(){if(!started){started=true;log("video_start");}});
+        p.on("play",function(){if(!started){started=true;log("video_start");px("ViewContent");}});
         p.on("timeupdate",function(d){
           var pc=Math.floor(d.percent*100);
           if(pc>maxW){
             maxW=pc;origSet.call(localStorage,"dexon_watch",String(pc));
+            if(pc>=25&&!m25){m25=1;px("VideoWatch25",1);}
+            if(pc>=75&&!m75){m75=1;px("VideoWatch75",1);}
             if(pc-sent>=5||pc>=100){sent=pc;log("progress",pc);}
           }
         });
@@ -173,7 +201,7 @@ Error generating stack: `+o.message+`
   /* 4) Booking button click (any link to Superprofile) */
   document.addEventListener("click",function(e){
     var a=e.target&&e.target.closest?e.target.closest('a[href*="superprofile.bio"]'):null;
-    if(a) log("book_click");
+    if(a){log("book_click");px("Schedule");}
   },true);
 })();
 </script>
