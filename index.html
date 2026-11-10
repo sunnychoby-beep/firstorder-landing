@@ -42,6 +42,12 @@
   .hero h1{font-size:clamp(30px,6.6vw,46px);margin-bottom:14px}
   .hero h1 em{font-style:normal;color:var(--cta-dark)}
   .hero .sub{font-size:18px;color:var(--body);margin-bottom:22px}
+  .host{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 14px;text-align:left}
+  .host img{width:52px;height:52px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px var(--cta)}
+  .host b{display:block;color:var(--ink);font-size:16px;line-height:1.3}
+  .host span{font-size:14px;color:var(--muted)}
+  .facts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:20px}
+  .facts span{background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600;color:var(--ink)}
   .watch{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:600;color:var(--ink);font-size:15px;margin-bottom:10px}
   .watch span{width:9px;height:9px;border-radius:50%;background:#DC2626;animation:pulse 1.4s infinite}
   @keyframes pulse{50%{opacity:.25}}
@@ -117,6 +123,8 @@
   .err{color:#B91C1C;font-size:14px;margin-top:6px;min-height:0}
   .lead .btn2{margin-top:18px;width:100%;height:54px;border-radius:10px;border:0;background:var(--navy);color:#fff;font:700 17px Inter,sans-serif;cursor:pointer}
   .lead .btn2:disabled{opacity:.6}
+  .btn2.wa{background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:54px;border-radius:10px;font:700 17px Inter,sans-serif}
+  .btn2.wa:hover{background:#1EBE5A}
   .fine{font-size:13px;color:var(--muted);margin-top:10px}
   .thanks{display:none;text-align:center;padding:10px 0}
   .thanks b{display:block;font-size:20px;color:var(--ink);margin-bottom:6px}
@@ -160,7 +168,9 @@
   <div class="wrap center">
     <div class="eyebrow">For new Indian exporters</div>
     <h1>Get a Clear Plan for Your <em>First Export Order</em> in One 1:1 Call</h1>
-    <p class="sub">Pick one product and one country, find buyers yourself, and ask for advance payment with confidence. A private call with Sunny Choby.</p>
+    <p class="sub">Pick one product and one country, find buyers yourself, and ask for advance payment with confidence.</p>
+    <div class="host"><img src="data:image/jpeg;base64,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" alt="Sunny Choby" width="160" height="160"><div><b>With Sunny Choby</b><span>Founder, Dexon International</span></div></div>
+    <div class="facts"><span>⏱ 40-minute call</span><span>🗣 In Hindi</span><span>💻 1:1 on Zoom</span></div>
 
     <div class="watch"><span></span>Watch This Short Video Before You Book</div>
     <div class="video">
@@ -170,7 +180,7 @@
 
     <div class="cta-block" id="heroCta">
       <a class="cta book" href="https://superprofile.bio/bookings/DEXON0533">Book My 1:1 Call – ₹1499 →</a>
-      <p class="price-line"><b>₹1,499</b> · Secure payment · Call fixed within 24 hours</p>
+      <p class="price-line"><b>₹1,499</b> · 40-minute call in Hindi · Secure payment</p>
       <p class="scarcity">🔥 Only <span class="slots">4</span> slots available this week</p>
     </div>
 
@@ -282,6 +292,7 @@
         <li>What to write to buyers, and how to follow up</li>
         <li>How to ask for advance payment with confidence</li>
         <li>A clear action plan for your first order</li>
+        <li>40-minute private Zoom call, in Hindi</li>
       </ul>
       <a class="cta book" id="offerCta" href="https://superprofile.bio/bookings/DEXON0533">Book My 1:1 Call – ₹1499 →</a>
       <p class="price-line">Secure payment · Instant confirmation</p>
@@ -314,7 +325,8 @@
     <details><summary>How much money do I need to start exporting?</summary><p>It depends on your product and country. On the call, we look at your budget and choose a product and market that fit it, so you start small and safe.</p></details>
     <details><summary>I already bought a course or buyer data, but got no orders. How is this different?</summary><p>A course is the same for everyone, and a list doesn't tell you how to talk to buyers. This call is only about your product, your country and your questions, and you leave with a step-by-step plan.</p></details>
     <details><summary>Will I get an export order right after the call?</summary><p>Honestly, no one can promise an order. What you get is a clear plan: what to sell, where to sell, how to find buyers and what to say to them. The results come from following that plan, step by step.</p></details>
-    <details><summary>How does the call happen?</summary><p>It's a private 1:1 video call on Zoom. After you pay, my team messages you on WhatsApp within 24 hours to fix a time that suits you.</p></details>
+    <details><summary>How does the call happen?</summary><p>It's a private 40-minute 1:1 video call on Zoom. After you pay, my team messages you on WhatsApp within 24 hours to fix a time that suits you.</p></details>
+    <details><summary>In which language is the call?</summary><p>The call is in Hindi, so you can ask every question freely and understand every step clearly.</p></details>
     <div class="cta-block"><a class="cta book" href="https://superprofile.bio/bookings/DEXON0533">Book My 1:1 Call – ₹1499 →</a></div>
   </div>
 </section>
@@ -324,8 +336,8 @@
   <div class="wrap" style="max-width:520px">
     <div class="lead">
       <form id="leadForm" novalidate>
-        <h3>Not Ready to Book Yet?</h3>
-        <p style="font-size:15px">Leave your details. My team will message you on WhatsApp to answer your questions.</p>
+        <h3>Still Have Questions?</h3>
+        <p style="font-size:15px">If you have any question about the 1:1 call, fill in your details and chat with us directly on WhatsApp. We are happy to help.</p>
         <label for="lname">Your name</label>
         <input id="lname" name="name" autocomplete="name" required>
         <div class="err" id="errName"></div>
@@ -335,10 +347,10 @@
         <label for="lemail">Email address</label>
         <input id="lemail" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>
         <div class="err" id="errEmail"></div>
-        <button class="btn2" type="submit" id="leadBtn">Message me on WhatsApp</button>
-        <p class="fine">By sending, you agree that Dexon International can contact you on WhatsApp or email. See our <a href="/privacy.html">Privacy Policy</a>.</p>
+        <button class="btn2 wa" type="submit" id="leadBtn"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>Chat With Us on WhatsApp</button>
+        <p class="fine">By continuing, you agree that Dexon International can contact you on WhatsApp or email. See our <a href="/privacy.html">Privacy Policy</a>.</p>
       </form>
-      <div class="thanks" id="thanks"><b>Thank you! ✅</b>My team will message you on WhatsApp soon.</div>
+      <div class="thanks" id="thanks"><b>Thank you! ✅</b>Opening WhatsApp… If it doesn't open, tap the button below.<a class="btn2 wa" id="waLink" href="https://wa.me/919878187274" style="margin-top:16px;text-decoration:none">Open WhatsApp Chat</a></div>
     </div>
   </div>
 </section>
@@ -388,6 +400,7 @@
   var API="https://vztmcarfrnmmnasmovtq.supabase.co/rest/v1/rpc/";
   var KEY="sb_publishable_zOeCB7gvONrSXD4InUzSZA_-VVWoszC";
   var CFG=window.DEXON_CONFIG||{};
+  var WA_NUMBER="919878187274";   /* your WhatsApp number (country code + number, no + sign) */
   function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
   function read(k){try{return localStorage.getItem(k)}catch(e){return null}}
   function ck(n){var m=document.cookie.match(new RegExp("(?:^|; )"+n+"=([^;]*)"));return m?decodeURIComponent(m[1]):"";}
@@ -426,7 +439,7 @@
   function leadId(){return read("dexon_lead_id");}
   function log(ev,val){var id=leadId();if(id)rpc("log_lead_event",{p_id:id,p_event:ev,p_value:(val==null?null:val)});}
 
-  /* 1) Optional lead form: name + WhatsApp only */
+  /* 1) Questions form: save lead in CRM, then open WhatsApp chat */
   var form=document.getElementById("leadForm"),btn=document.getElementById("leadBtn");
   form.addEventListener("submit",function(e){
     e.preventDefault();
@@ -439,12 +452,24 @@
     var email=form.email.value.trim();
     document.getElementById("errEmail").textContent=!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)?(ok=false,"Please enter a valid email address."):"";
     if(!ok)return;
-    btn.disabled=true;btn.textContent="Sending…";
+    btn.disabled=true;btn.lastChild.textContent="Opening WhatsApp…";
+    /* WhatsApp chat goes to Sunny's business number, with a ready message */
+    var wa="https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent("Hi Sunny, I am "+name+". I have a question about the 1:1 First Export Order Strategy Call.");
+    document.getElementById("waLink").href=wa;
+    var done=false;
+    function go(){
+      if(done)return;done=true;
+      form.style.display="none";document.getElementById("thanks").style.display="block";
+      px("Contact");
+      location.href=wa;
+    }
+    /* save the lead in the CRM first, then open WhatsApp (max wait 2.5 sec) */
     rpc("capture_lead",{p_name:name,p_phone:"+91"+phone,p_email:email,p_source:location.hostname,p_attr:attr()})
       .then(function(id){
         if(id){store("dexon_lead_id",id);px("Lead");}
-        form.style.display="none";document.getElementById("thanks").style.display="block";
+        go();
       });
+    setTimeout(go,2500);
   });
 
   /* 2) Returning lead: count one visit per browser session */
