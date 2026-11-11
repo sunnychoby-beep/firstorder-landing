@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Payment Successful | Dexon International</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Plus+Jakarta+Sans:wght@800&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0F172A;--body:#334155;--muted:#64748B;--line:#E3E8EF;--soft:#F3F6FA;--wa:#25D366}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--soft);color:var(--body);font:400 17px/1.6 Inter,system-ui,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;max-width:480px;width:100%;padding:32px 22px;text-align:center;box-shadow:0 14px 40px rgba(15,23,42,.08)}
+  .tick{width:72px;height:72px;border-radius:50%;background:#DCFCE7;color:#15803D;font-size:38px;display:grid;place-items:center;margin:0 auto 16px}
+  h1{font:800 clamp(26px,6vw,32px)/1.2 "Plus Jakarta Sans",sans-serif;color:var(--ink);margin-bottom:8px}
+  .lead{margin-bottom:22px}
+  .step{background:var(--soft);border-radius:12px;padding:16px;text-align:left;margin-bottom:20px}
+  .step b{color:var(--ink);display:block;margin-bottom:4px}
+  .wa{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:58px;border-radius:12px;background:var(--wa);color:#fff;text-decoration:none;font-weight:700;font-size:18px;box-shadow:0 8px 20px rgba(37,211,102,.3)}
+  .fine{font-size:14px;color:var(--muted);margin-top:16px}
+  .fine a{color:var(--muted)}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="tick">✓</div>
+    <h1>Payment Successful!</h1>
+    <p class="lead">Thank you. Your 1:1 First Export Order Strategy Call is booked.</p>
+    <div class="step">
+      <b>One last step: choose your call time</b>
+      Tap the button below and send the message on WhatsApp. My team will fix your 40-minute call with Sunny.
+    </div>
+    <a class="wa" id="wa" href="https://wa.me/919878187274?text=Hi%20Sunny%2C%20I%20have%20paid%20%E2%82%B91%2C499%20for%20the%201%3A1%20call.%20Please%20book%20my%20slot.">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+      Choose My Call Time
+    </a>
+    <p class="fine">Your payment receipt is sent by Razorpay to your email.<br>© Dexon International · <a href="/privacy.html">Privacy Policy</a></p>
+  </div>
+
+<script src="config.js"></script>
+<script>
+(function(){
+  var CFG=window.DEXON_CONFIG||{};
+  var API="https://vztmcarfrnmmnasmovtq.supabase.co/rest/v1/rpc/";
+  var KEY="sb_publishable_zOeCB7gvONrSXD4InUzSZA_-VVWoszC";
+  function read(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+
+  /* Count each payment only once (refreshing this page must not count again) */
+  var q=new URLSearchParams(location.search);
+  var pid=q.get("razorpay_payment_id")||q.get("payment_id")||"";
+  var key="dexon_paid_"+(pid||new Date().toISOString().slice(0,10));
+  var first=!read(key); if(first) store(key,"1");
+
+  if(CFG.pixelId){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
+    fbq("init",CFG.pixelId);fbq("track","PageView");
+    if(first) fbq("track","Purchase",{value:1499,currency:"INR",content_name:"1:1 First Export Order Strategy Call"},pid?{eventID:pid}:{});
+  }
+
+  /* Mark the lead as paid in the CRM (if this visitor filled the form earlier) */
+  var id=read("dexon_lead_id");
+  if(first&&id){
+    fetch(API+"log_lead_event",{method:"POST",keepalive:true,headers:{"apikey":KEY,"Authorization":"Bearer "+KEY,"Content-Type":"application/json"},
+      body:JSON.stringify({p_id:id,p_event:"purchase",p_value:1499})}).catch(function(){});
+  }
+  document.getElementById("wa").addEventListener("click",function(){try{if(window.fbq)fbq("track","Contact")}catch(e){}});
+})();
+</script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
