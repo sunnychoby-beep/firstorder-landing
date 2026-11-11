@@ -114,6 +114,7 @@
   .bonus li::before{content:"🎁";position:absolute;left:0;top:0;font-size:15px}
   .bonus li b{color:var(--ink);font-size:16px}
   .bonus li span{color:var(--muted);font-size:14px}
+  .pay-box .cta svg{flex:0 0 auto}
   .pay-box{scroll-margin-top:90px;background:var(--soft);border:2px solid var(--cta);border-radius:14px;padding:16px 12px}
   .pay-note{font-weight:600;color:var(--ink);font-size:15px;margin-bottom:12px}
   #rzpForm{display:flex;justify-content:center;min-height:48px}
@@ -194,8 +195,8 @@
     </div>
 
     <div class="cta-block" id="heroCta">
-      <a class="cta book" href="#pay">Book My 1:1 Call – ₹1,499 →</a>
-      <p class="price-line"><s>₹14,999</s> <b>₹1,499</b> · 40-minute call in Hindi · Secure payment</p>
+      <a class="cta book" href="https://wa.me/919878187274?text=Hi%20Sunny%2C%20I%20want%20to%20book%20the%201%3A1%20First%20Export%20Order%20Strategy%20Call%20for%20%E2%82%B91%2C499.%20Please%20share%20the%20payment%20details.">Book My 1:1 Call – ₹1,499 →</a>
+      <p class="price-line"><s>₹14,999</s> <b>₹1,499</b> · 40-minute call in Hindi · Book on WhatsApp</p>
       <p class="scarcity">🔥 Only <span class="slots">3</span> slots available this week</p>
     </div>
 
@@ -321,11 +322,13 @@
         </ul>
       </div>
       <div class="pay-box" id="offerCta">
-        <p class="pay-note">👇 Tap below to pay ₹1,499 securely (UPI, card or net banking)</p>
-        <!-- RAZORPAY PAYMENT BUTTON -->
-        <form id="rzpForm"><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_TyqhL1jVRueRW9" async> </script> </form>
+        <p class="pay-note">👇 Tap below to book on WhatsApp. We'll share the UPI payment details and fix your call time.</p>
+        <a class="cta book" href="https://wa.me/919878187274?text=Hi%20Sunny%2C%20I%20want%20to%20book%20the%201%3A1%20First%20Export%20Order%20Strategy%20Call%20for%20%E2%82%B91%2C499.%20Please%20share%20the%20payment%20details."><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>Book on WhatsApp – ₹1,499</a>
+        <!-- RAZORPAY (switch back when the live account is ready):
+        <form id="rzpForm"><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="LIVE_BUTTON_ID" async> </script> </form>
+        -->
       </div>
-      <p class="price-line">Secure payment by Razorpay · Instant confirmation</p>
+      <p class="price-line">Pay by UPI · Quick reply on WhatsApp</p>
       <p class="scarcity">🔥 Only <span class="slots">3</span> slots available this week</p>
 
       <!-- GUARANTEE: only switch this on if you will honour it. Remove the comment marks to show it.
@@ -333,10 +336,11 @@
       -->
 
       <div style="text-align:left;margin-top:26px">
-        <h3>What Happens After You Pay</h3>
+        <h3>How to Book</h3>
         <ol class="after">
-          <li><span><b>Booking confirmed.</b> You get a personal thank-you message from Sunny.</span></li>
-          <li><span><b>We fix your time.</b> My team messages you on WhatsApp within 24 hours to schedule your call.</span></li>
+          <li><span><b>Message us on WhatsApp.</b> Tap the Book button. Your message is already typed.</span></li>
+          <li><span><b>Pay ₹1,499 by UPI.</b> We share the payment details, and you send the payment screenshot.</span></li>
+          <li><span><b>We fix your time.</b> We confirm your booking and schedule your call on WhatsApp.</span></li>
           <li><span><b>Your 1:1 call.</b> You leave with your product, your country, outreach scripts and an action plan.</span></li>
           <li><span><b>Your bonuses.</b> You get the PDF, checklist, roadmap and call recording, plus 15 days of WhatsApp support.</span></li>
         </ol>
@@ -357,10 +361,10 @@
     <details><summary>How much money do I need to start exporting?</summary><p>It depends on your product and country. On the call, we look at your budget and choose a product and market that fit it, so you start small and safe.</p></details>
     <details><summary>I already bought a course or buyer data, but got no orders. How is this different?</summary><p>A course is the same for everyone, and a list doesn't tell you how to talk to buyers. This call is only about your product, your country and your questions, and you leave with a step-by-step plan.</p></details>
     <details><summary>Will I get an export order right after the call?</summary><p>Honestly, no one can promise an order. What you get is a clear plan: what to sell, where to sell, how to find buyers and what to say to them. The results come from following that plan, step by step.</p></details>
-    <details><summary>How does the call happen?</summary><p>It's a private 40-minute 1:1 video call on Zoom. After you pay, my team messages you on WhatsApp within 24 hours to fix a time that suits you.</p></details>
+    <details><summary>How does the call happen?</summary><p>It's a private 40-minute 1:1 video call on Zoom. After you pay by UPI, we fix a time that suits you on WhatsApp.</p></details>
     <details><summary>What do I get after the call?</summary><p>You get an Export Strategy PDF, a step-by-step checklist, a First Export Order Roadmap and the lifetime recording of your call. You also get 15 days of WhatsApp support for your questions.</p></details>
     <details><summary>In which language is the call?</summary><p>The call is in Hindi, so you can ask every question freely and understand every step clearly.</p></details>
-    <div class="cta-block"><a class="cta book" href="#pay">Book My 1:1 Call – ₹1,499 →</a></div>
+    <div class="cta-block"><a class="cta book" href="https://wa.me/919878187274?text=Hi%20Sunny%2C%20I%20want%20to%20book%20the%201%3A1%20First%20Export%20Order%20Strategy%20Call%20for%20%E2%82%B91%2C499.%20Please%20share%20the%20payment%20details.">Book My 1:1 Call – ₹1,499 →</a></div>
   </div>
 </section>
 
@@ -392,7 +396,7 @@
   <div class="wrap">© Dexon International · Sunny Choby · <a href="/privacy.html">Privacy Policy</a></div>
 </footer>
 
-<div class="sticky" id="sticky"><a class="cta book" href="#pay">Book My 1:1 Call – ₹1,499 →</a></div>
+<div class="sticky" id="sticky"><a class="cta book" href="https://wa.me/919878187274?text=Hi%20Sunny%2C%20I%20want%20to%20book%20the%201%3A1%20First%20Export%20Order%20Strategy%20Call%20for%20%E2%82%B91%2C499.%20Please%20share%20the%20payment%20details.">Book My 1:1 Call – ₹1,499 →</a></div>
 
 <div class="lb" id="lb" role="dialog" aria-label="Screenshot"><button type="button" aria-label="Close">×</button><img alt=""></div>
 
@@ -535,18 +539,10 @@
   }
   if(document.readyState==="complete")setTimeout(attach,1000);else addEventListener("load",function(){setTimeout(attach,1000);});
 
-  /* 4) Book buttons scroll to the Razorpay button; tapping Razorpay = InitiateCheckout */
+  /* 4) Book buttons open WhatsApp booking chat = InitiateCheckout (same event the Sales campaign optimises for) */
   document.addEventListener("click",function(e){
-    var a=e.target&&e.target.closest?e.target.closest('a[href="#pay"]'):null;
-    if(a){
-      e.preventDefault();
-      var box=document.getElementById("offerCta");
-      box.scrollIntoView({behavior:"smooth",block:"center"});
-      box.classList.remove("flash");void box.offsetWidth;box.classList.add("flash");
-      log("book_scroll");px("BookButtonClick",1);
-      return;
-    }
-    if(e.target&&e.target.closest&&e.target.closest("#rzpForm")){log("book_click");px("InitiateCheckout");}
+    var a=e.target&&e.target.closest?e.target.closest("a.book"):null;
+    if(a){log("book_click");px("InitiateCheckout");px("Contact");}
   },true);
 })();
 </script>
