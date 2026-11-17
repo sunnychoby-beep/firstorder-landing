@@ -541,9 +541,9 @@
       document.getElementById("gErrEmail").textContent=!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)?(ok=false,"Please enter a valid email address."):"";
       if(!ok)return;
       gb.disabled=true;gb.textContent="Unlocking…";
-      var a=attr();a.utm_source=a.utm_source||src;a.channel="instagram_bio";
+      var a=attr();a.utm_source=a.utm_source||src;a.channel=src==="website"?"website_book_button":"instagram_bio";
       var done=false;function finish(){if(done)return;done=true;store("dexon_ig_unlocked","1");open();}
-      rpc("capture_lead",{p_name:name,p_phone:"+91"+phone,p_email:email,p_source:"instagram",p_attr:a})
+      rpc("capture_lead",{p_name:name,p_phone:"+91"+phone,p_email:email,p_source:src,p_attr:a})
         .then(function(id){if(id){store("dexon_lead_id",id);px("Lead");}finish();});
       setTimeout(finish,3000);
     });
