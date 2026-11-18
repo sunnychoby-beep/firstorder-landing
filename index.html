@@ -589,11 +589,11 @@
     log("book_click");px("InitiateCheckout");px("Contact");
     if(leadId()||read("dexon_book_lead"))return;           /* already captured: go straight to booking */
     e.preventDefault();bkHref=a.href;
-    bk.classList.add("open");
+    bk.classList.add("open");px("BookPopupOpen",1);
     setTimeout(function(){try{document.getElementById("bkN").focus()}catch(x){}},150);
   },true);
-  document.getElementById("bkX").addEventListener("click",function(){bk.classList.remove("open");});
-  bk.addEventListener("click",function(e){if(e.target===bk)bk.classList.remove("open");});
+  document.getElementById("bkX").addEventListener("click",function(){bk.classList.remove("open");px("BookPopupClose",1);});
+  bk.addEventListener("click",function(e){if(e.target===bk){bk.classList.remove("open");px("BookPopupClose",1);}});
   bkF.addEventListener("submit",function(e){
     e.preventDefault();
     var name=document.getElementById("bkN").value.trim(),phone=document.getElementById("bkP").value.replace(/\D/g,"");
@@ -603,11 +603,11 @@
     document.getElementById("bkEN").textContent=name.length<2?(ok=false,"Please enter your name."):"";
     document.getElementById("bkEP").textContent=!/^[6-9]\d{9}$/.test(phone)?(ok=false,"Please enter a valid 10-digit WhatsApp number."):"";
     if(!ok)return;
-    bkB.disabled=true;bkB.textContent="Opening booking…";
+    px("BookPopupSubmit",1);bkB.disabled=true;bkB.textContent="Opening booking…";
     var a=attr();a.channel="book_button";
     var done=false;function fin(){if(done)return;done=true;store("dexon_book_lead","1");goBook();}
     rpc("capture_lead",{p_name:name,p_phone:"+91"+phone,p_email:"",p_source:"book_button",p_attr:a})
-      .then(function(id){if(id){store("dexon_lead_id",id);px("Lead");log("book_click");}fin();});
+      .then(function(id){if(id){store("dexon_lead_id",id);px("Lead");log("book_click");}else{px("LeadSaveFailed",1);}fin();});
     setTimeout(fin,2500);
   });
 })();
